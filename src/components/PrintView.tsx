@@ -36,7 +36,7 @@ export function PrintView({ activities, teamName }: Props) {
               <p className="whitespace-pre-wrap">{activity[field.key] || "未記入"}</p>
             </div>
           ))}
-          {activity.competency && <p className={`inline-block rounded px-2 py-1 ${COMPETENCY_COLORS[activity.competency]}`}>関連する力：{activity.competency}</p>}
+          {activity.competency && <p className={`inline-block rounded px-2 py-1 ${COMPETENCY_COLORS[activity.competency]}`}>探究活動の段階：{activity.competency}</p>}
         </article>
       ))}
       <div className="print-page-break" />
