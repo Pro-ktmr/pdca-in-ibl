@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useState } from "react";
 import { Activity, createEmptyActivity } from "@/types/note";
 
-const STORAGE_KEY = "ibl-notes";
-const TEAM_NAME_KEY = "ibl-notes-username";
+const STORAGE_KEY = "pdca-in-ibl";
+const TEAM_NAME_KEY = "pdca-in-ibl-username";
 
 type LegacyCycleTab = {
   taskSetting?: string;
