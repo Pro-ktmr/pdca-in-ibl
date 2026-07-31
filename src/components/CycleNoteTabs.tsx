@@ -4,7 +4,6 @@ import { useState } from "react";
 import {
   Activity,
   ActivityTextField,
-  isActivityComplete,
 } from "@/types/note";
 
 const FIELDS: { key: ActivityTextField; label: string; prompt: string }[] = [
@@ -25,8 +24,6 @@ export function CycleNoteTabs({ activities, onChange, onAdd }: Props) {
 
   const visibleTab = Math.min(activeTab, Math.max(0, activities.length - 1));
   const current = activities[visibleTab];
-  const lastActivity = activities[activities.length - 1];
-  const canAdd = lastActivity ? isActivityComplete(lastActivity) : false;
 
   const update = (partial: Partial<Activity>) => {
     if (!current) return;
@@ -34,7 +31,6 @@ export function CycleNoteTabs({ activities, onChange, onAdd }: Props) {
   };
 
   const addNext = () => {
-    if (!canAdd) return;
     onAdd();
     setActiveTab(activities.length);
   };
@@ -46,7 +42,7 @@ export function CycleNoteTabs({ activities, onChange, onAdd }: Props) {
       <div>
         <div>
           <h2 className="text-lg font-semibold text-gray-800">各活動の記録</h2>
-          <p className="text-sm text-gray-500">PDCA 4 項目をすべて記入すると、次の活動を追加できます。</p>
+         
         </div>
       </div>
 
@@ -68,11 +64,8 @@ export function CycleNoteTabs({ activities, onChange, onAdd }: Props) {
         <button
           type="button"
           onClick={addNext}
-          disabled={!canAdd}
-          title={canAdd ? "次の活動を追加" : "Plan・Do・Check・Action をすべて記入してください"}
-          className={`shrink-0 rounded-t px-3 py-2 text-sm font-semibold transition-colors ${
-            canAdd ? "bg-emerald-100 text-emerald-800 hover:bg-emerald-200 cursor-pointer" : "bg-gray-50 text-gray-400 cursor-not-allowed"
-          }`}
+          title="次の活動を追加"
+          className="shrink-0 rounded-t bg-emerald-100 px-3 py-2 text-sm font-semibold text-emerald-800 transition-colors hover:bg-emerald-200 cursor-pointer"
         >
           ＋ 次の活動
         </button>
