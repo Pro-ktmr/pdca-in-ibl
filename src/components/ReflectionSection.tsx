@@ -31,7 +31,7 @@ export function ReflectionSection({ activities, onChange }: Props) {
     <section className="bg-white shadow rounded-lg p-5 sm:p-6 space-y-4">
       <div>
         <h2 className="text-lg font-semibold text-gray-800">活動ノート一覧</h2>
-        <p className="text-sm text-gray-500">横にスクロールしてこれまでの活動を一覧できます。また、各活動が探究活動の{COMPETENCIES.map(competency => `「${competency.value}」`).join("")}のいずれに対応していたのかを振り返ることができます。</p>
+        <p className="text-sm text-gray-500">各活動が探究活動の{COMPETENCIES.map(competency => `「${competency.value}」`).join("")}のいずれに対応していたのかを定期的に振り返りましょう。</p>
       </div>
 
       <div className="overflow-x-auto rounded border border-gray-200">
