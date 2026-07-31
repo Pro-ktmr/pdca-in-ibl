@@ -8,8 +8,7 @@ export type ActivityTextField = "plan" | "do" | "check" | "action";
 
 export interface Activity {
   id: string;
-  dateStart: string;
-  dateEnd?: string;
+  date: string;
   plan: string;
   do: string;
   check: string;
@@ -20,8 +19,7 @@ export interface Activity {
 export function createEmptyActivity(): Activity {
   return {
     id: crypto.randomUUID(),
-    dateStart: "",
-    dateEnd: "",
+    date: "",
     plan: "",
     do: "",
     check: "",
@@ -35,7 +33,6 @@ export function isActivityComplete(activity: Activity): boolean {
   );
 }
 
-export function formatActivityDate(activity: Pick<Activity, "dateStart" | "dateEnd">): string {
-  if (!activity.dateStart) return "未入力";
-  return activity.dateEnd ? `${activity.dateStart} ～ ${activity.dateEnd}` : activity.dateStart;
+export function formatActivityDate(activity: Pick<Activity, "date">): string {
+  return activity.date || "未入力";
 }

@@ -78,31 +78,19 @@ export function CycleNoteTabs({ activities, onChange, onAdd }: Props) {
         </button>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-end">
+      <div>
         <div>
-          <label htmlFor="activity-start" className="block text-sm font-medium text-gray-700 mb-1">実施日</label>
+          <label htmlFor="activity-date" className="block text-sm font-medium text-gray-700 mb-1">活動日</label>
           <input
-            id="activity-start"
+            id="activity-date"
             type="date"
-            value={current.dateStart}
-            onChange={(event) => update({ dateStart: event.target.value })}
-            className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-        </div>
-        <span className="hidden sm:block pb-2 text-sm text-gray-500">～</span>
-        <div>
-          <label htmlFor="activity-end" className="block text-sm font-medium text-gray-700 mb-1">終了日 <span className="font-normal text-gray-400">（期間の場合）</span></label>
-          <input
-            id="activity-end"
-            type="date"
-            value={current.dateEnd ?? ""}
-            min={current.dateStart || undefined}
-            onChange={(event) => update({ dateEnd: event.target.value })}
+            value={current.date}
+            onChange={(event) => update({ date: event.target.value })}
             className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
       </div>
-      {!current.dateStart && <p className="-mt-3 text-xs text-amber-700">実施日を入力してください。</p>}
+      {!current.date && <p className="-mt-3 text-xs text-amber-700">活動日を入力してください。</p>}
 
       <div className="space-y-4">
         {FIELDS.map((field) => (

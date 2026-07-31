@@ -18,15 +18,18 @@ type LegacyNote = {
   cycleTabs?: LegacyCycleTab[];
 };
 
-function isActivity(value: unknown): value is Activity {
+type StoredActivity = Partial<Activity> & {
+  dateStart?: unknown;
+};
+
+function isActivity(value: unknown): value is StoredActivity {
   return typeof value === "object" && value !== null && "plan" in value && "do" in value && "check" in value && "action" in value;
 }
 
-function normaliseActivity(value: Activity): Activity {
+function normaliseActivity(value: StoredActivity): Activity {
   return {
     id: typeof value.id === "string" ? value.id : crypto.randomUUID(),
-    dateStart: typeof value.dateStart === "string" ? value.dateStart : "",
-    dateEnd: typeof value.dateEnd === "string" ? value.dateEnd : "",
+    date: typeof value.date === "string" ? value.date : typeof value.dateStart === "string" ? value.dateStart : "",
     plan: typeof value.plan === "string" ? value.plan : "",
     do: typeof value.do === "string" ? value.do : "",
     check: typeof value.check === "string" ? value.check : "",
@@ -39,8 +42,7 @@ function migrateLegacyNotes(notes: LegacyNote[]): Activity[] {
   return notes.flatMap((note) =>
     (note.cycleTabs ?? []).map((tab) => ({
       id: crypto.randomUUID(),
-      dateStart: note.date ?? "",
-      dateEnd: "",
+      date: note.date ?? "",
       plan: tab.taskSetting ?? "",
       do: tab.problemSolving ?? "",
       check: tab.analysis ?? "",
