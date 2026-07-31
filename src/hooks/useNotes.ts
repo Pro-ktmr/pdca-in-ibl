@@ -6,6 +6,13 @@ import { Activity, createEmptyActivity } from "@/types/note";
 const STORAGE_KEY = "pdca-in-ibl";
 const TEAM_NAME_KEY = "pdca-in-ibl-username";
 
+function getTodayDate(): string {
+  const today = new Date();
+  const month = String(today.getMonth() + 1).padStart(2, "0");
+  const day = String(today.getDate()).padStart(2, "0");
+  return `${today.getFullYear()}-${month}-${day}`;
+}
+
 type LegacyCycleTab = {
   taskSetting?: string;
   problemSolving?: string;
@@ -94,7 +101,7 @@ export function useNotes() {
   }, []);
 
   const addActivity = useCallback(() => {
-    setActivities((previous) => [...previous, createEmptyActivity()]);
+    setActivities((previous) => [...previous, createEmptyActivity(getTodayDate())]);
   }, []);
 
   const importActivities = useCallback((json: string): { success: boolean; error?: string } => {

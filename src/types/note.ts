@@ -16,10 +16,10 @@ export interface Activity {
   competency?: Competency;
 }
 
-export function createEmptyActivity(): Activity {
+export function createEmptyActivity(date = ""): Activity {
   return {
     id: crypto.randomUUID(),
-    date: "",
+    date,
     plan: "",
     do: "",
     check: "",
