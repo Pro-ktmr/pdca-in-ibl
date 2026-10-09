@@ -95,7 +95,7 @@ export function CycleNoteTabs({ activities, onChange, onAdd }: Props) {
               value={current[field.key]}
               onChange={(event) => update({ [field.key]: event.target.value })}
               rows={3}
-              className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
+              className="field-sizing-content min-h-[calc(3lh+1rem+2px)] w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400 resize-y"
             />
           </div>
         ))}
